@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InvisibleOpponents", "InvisibleOpponents\InvisibleOpponents.vcxproj", "{BD2605AE-193F-4611-BC71-806AD03B4E94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD2605AE-193F-4611-BC71-806AD03B4E94}.Release|x64.ActiveCfg = Release|x64
+		{BD2605AE-193F-4611-BC71-806AD03B4E94}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EB7AED0-3CB8-499B-A755-3440C7FEDD6C}
+	EndGlobalSection
+EndGlobal
