@@ -8,6 +8,7 @@ std::shared_ptr<CVarManagerWrapper> _globalCvarManager;
 
 bool blueInvisible = false;
 bool orangeInvisible = false;
+bool opposingInvisible = false;
 
 void InvisibleOpponents::onLoad()
 {
@@ -22,6 +23,11 @@ void InvisibleOpponents::onLoad()
 		else {
 			unhookEvents();
 		}
+			});
+
+	cvarManager->registerCvar("invisible_opponents_enable_opponents", "0", "Makes opposing team invisible", true, true, 0, true, 1)
+		.addOnValueChanged([this](std::string, CVarWrapper cvar) {
+			opposingInvisible = cvar.getBoolValue();
 			});
 
 	cvarManager->registerCvar("invisible_opponents_enable_blue", "0", "Makes blue team invisible", true, true, 0, true, 1)
@@ -105,6 +111,14 @@ void InvisibleOpponents::onTick() {
 			continue;
 		}
 
+		cvarManager->log("Usr Team = " + std::to_string(teamNum));
+		cvarManager->log("Car Team = " + std::to_string(car.GetTeamNum2()));
+
+		PriWrapper pri = car.GetPRI();
+		if (pri) {
+			cvarManager->log("Car Num  = " + std::to_string(car.GetPRI().GetSpectatorShortcut()));
+		}
+
 		if (teamNum != 0 && teamNum != 1) {
 			if (car.GetTeamNum2() == 0) {
 				if (blueInvisible) {
@@ -121,12 +135,15 @@ void InvisibleOpponents::onTick() {
 					car.SetHidden2(0);
 				}
 			}
-			return;
+			continue;
 		}
 
 		if (car.GetTeamNum2() != teamNum) {
-			//car.SetbHiddenSelf(1);
-			car.SetHidden2(1);
+			if (opposingInvisible) {
+				car.SetHidden2(1);
+			} else {
+				car.SetHidden2(0);
+			}
 		} else {
 			car.SetHidden2(0);
 		}

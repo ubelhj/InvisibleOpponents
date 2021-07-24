@@ -2,7 +2,7 @@
 #include "InvisibleOpponents.h"
 
 std::string InvisibleOpponents::GetPluginName() {
-	return "Free Flight";
+	return "Invisible Opponents";
 }
 
 void InvisibleOpponents::SetImGuiContext(uintptr_t ctx) {
@@ -25,7 +25,22 @@ void InvisibleOpponents::RenderSettings() {
 		ImGui::SetTooltip("Toggle having invisible opponents");
 	}
 
-	ImGui::TextUnformatted("Makes the other team invisible");
+	ImGui::TextUnformatted("Controls for players only");
+	
+	CVarWrapper opponentInvisibleCvar = cvarManager->getCvar("invisible_opponents_enable_opponents");
+
+	if (!opponentInvisibleCvar) {
+		return;
+	}
+
+	bool opponentInvisibleEnable = opponentInvisibleCvar.getBoolValue();
+
+	if (ImGui::Checkbox("Make opponent invisible", &opponentInvisibleEnable)) {
+		opponentInvisibleCvar.setValue(opponentInvisibleEnable);
+	}
+	if (ImGui::IsItemHovered()) {
+		ImGui::SetTooltip("If checked, opponent is invisible");
+	}
 
 	ImGui::NewLine();
 
