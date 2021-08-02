@@ -61,7 +61,7 @@ ServerWrapper InvisibleOpponents::getSW() {
 		auto server = gameWrapper->GetOnlineGame();
 
 		if (server.IsNull()) {
-			cvarManager->log("null server");
+			//cvarManager->log("null server");
 			return NULL;
 		}
 
@@ -81,7 +81,7 @@ ServerWrapper InvisibleOpponents::getSW() {
 		auto server = gameWrapper->GetGameEventAsServer();
 
 		if (server.IsNull()) {
-			cvarManager->log("null server");
+			//cvarManager->log("null server");
 			return NULL;
 		}
 
@@ -111,12 +111,12 @@ void InvisibleOpponents::onTick() {
 			continue;
 		}
 
-		cvarManager->log("Usr Team = " + std::to_string(teamNum));
-		cvarManager->log("Car Team = " + std::to_string(car.GetTeamNum2()));
+		//cvarManager->log("Usr Team = " + std::to_string(teamNum));
+		//cvarManager->log("Car Team = " + std::to_string(car.GetTeamNum2()));
 
 		PriWrapper pri = car.GetPRI();
 		if (pri) {
-			cvarManager->log("Car Num  = " + std::to_string(car.GetPRI().GetSpectatorShortcut()));
+			//cvarManager->log("Car Num  = " + std::to_string(car.GetPRI().GetSpectatorShortcut()));
 		}
 
 		if (teamNum != 0 && teamNum != 1) {
